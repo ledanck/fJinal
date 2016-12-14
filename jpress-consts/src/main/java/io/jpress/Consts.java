@@ -67,4 +67,14 @@ public class Consts {
 	public static final String MODULE_API_APPLICATION = "api_application"; // API应用，可以对应用进行管理
 	
 	public static final String TAXONOMY_TEMPLATE_PREFIX = "for$";
+
+
+    /***
+     *  因为只给我Web包，这些常量都没有定义,如果不同，你需要自己修改
+     */
+
+	public static final String ROUTER_COMPANNY = "/company";
+    public static final String ROUTER_MATCH = "/match";
+    public static final String ROUTER_TAKE_PART_MATCH = "/take_part_match";
+    public static final String ROUTER_RUBBISH = "/rubbish";
 }

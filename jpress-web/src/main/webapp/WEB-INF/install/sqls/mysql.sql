@@ -124,7 +124,10 @@ CREATE TABLE `{table_prefix}content` (
   KEY `created` (`created`),
   KEY `vote_down` (`vote_down`),
   KEY `vote_up` (`vote_up`),
-  KEY `view_count` (`view_count`)
+  KEY `view_count` (`view_count`),
+    KEY `title` (`title`),
+    KEY `summary` (`summary`),
+    KEY `comment_time` (`comment_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容表，用于存放比如文章、帖子、商品、问答等用户自定义模型内容。也用来存放比如菜单、购物车、消费记录等系统模型。';
 
 
@@ -347,6 +350,7 @@ CREATE TABLE `{table_prefix}signup` (
   `amount` smallint(5) unsigned zerofill NOT NULL,
   `info` varchar(1024) DEFAULT NULL,
   `success` tinyint(3) unsigned zerofill NOT NULL,
+  `content_id` bigint(20) UNSIGNED zerofill DEFAULT '0' COMMENT '报名信息',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
