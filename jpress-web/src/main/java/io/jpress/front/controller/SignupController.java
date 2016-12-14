@@ -6,6 +6,7 @@ import io.jpress.Consts;
 import io.jpress.core.BaseFrontController;
 import io.jpress.interceptor.UserInterceptor;
 import io.jpress.model.Signup;
+import io.jpress.model.User;
 import io.jpress.model.query.SignupQuery;
 import io.jpress.router.RouterMapping;
 
@@ -42,5 +43,10 @@ public class SignupController extends BaseFrontController {
 
     }
 
+    public void loadSignupInfo(){
+        User user = getLoginedUser();
+        setAttr("user", user);
+        render("signup_info.html");
+    }
 
 }

@@ -141,10 +141,9 @@ public class UserController extends BaseFrontController {
 		}
 	}
 
-	@Before(UCodeInterceptor.class)
 	public void logout() {
 		CookieUtils.remove(this, Consts.COOKIE_LOGINED_USER);
-		redirect("/");
+		render("user_login.html");
 	}
 
 	@Clear(UserInterceptor.class)
@@ -365,4 +364,5 @@ public class UserController extends BaseFrontController {
         }
         renderAjaxResult("更新成功", 200);
     }
+
 }

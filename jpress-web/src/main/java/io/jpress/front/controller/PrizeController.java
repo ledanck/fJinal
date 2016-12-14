@@ -6,6 +6,7 @@ import io.jpress.Consts;
 import io.jpress.core.BaseFrontController;
 import io.jpress.interceptor.UserInterceptor;
 import io.jpress.model.Prize;
+import io.jpress.model.User;
 import io.jpress.model.query.PrizeQuery;
 import io.jpress.router.RouterMapping;
 
@@ -76,5 +77,10 @@ public class PrizeController  extends BaseFrontController {
         prize.setScore((long)score);
 
         prize.save();
+    }
+    public void loadPrizeInfo(){
+        User user = getLoginedUser();
+        setAttr("user", user);
+        render("prize_info.html");
     }
 }
