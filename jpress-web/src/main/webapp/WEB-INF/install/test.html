@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/static/plugins/jquery/jquery-2.1.4.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $.post("/install/v1-v2",
+                        {
+                            username:"Donald Duck",
+                            password:"Duckburg"
+                        },
+                        function(data,status){
+                            alert("数据：" + data + "\n状态：" + status);
+                        });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>向页面发送 HTTP POST 请求，并获得返回的结果</button>
+
+</body>
+</html>

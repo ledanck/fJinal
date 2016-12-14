@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>欢迎来到XX教育</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="${TPATH}/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="${TPATH}/assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="${TPATH}/assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="${TPATH}/assets/images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Strata</strong>, a super simple<br />
+					responsive site template freebie<br />
+					crafted by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>${content.title}</h2>
+						</header>
+						<div class="x-details-content x-padding-top-10 x-padding-bottom-10 aritcle">
+							${content.text!}
+						</div>
+					</section>
+				<!-- -->
+				<#if content.isCommentEnable() >
+					<form action="${CPATH}/comment/submit" method="post"  id="comment">
+						<input type="hidden" name="cid" value="${(content.id)!}" >
+						<input type="hidden" name="anchor" value="comment" >
+						<input type="hidden" id="parent_id" name="parent_id" >
+						<div class="x-white-box">
+							<h3 class="x-box-title">
+								发表评论
+							</h3>
+							<!--<div class="x-layout-100 clearfix">
+								<textarea name="text" class="x-layout-100 x-border-grey x-box-border x-padding-5 x-item-space-8 body-bacground" placeholder="说点什么吧..."></textarea>
+							</div>-->
+							<div class="12u$"><textarea name="text" id="message" placeholder="说点什么吧..." rows="4"></textarea></div>
+							<#if OPTION('comment_need_captcha') ?? && OPTION('comment_need_captcha')=='true'>
+								<div class="x-layout-100 clearfix login-box ">
+									<p class="x-pull-left x-layout-10 login-box-title">验证码：</p>
+									<p class="x-pull-left x-layout-20"><input type="text" name="comment_captcha"></p>
+									<p class="x-pull-left x-layout-60"><img src="${CPATH}/captcha" onclick="this.src='${CPATH}/captcha?d='+Math.random();" ></p>
+								</div>
+							</#if>
+							<div class="x-layout-100 clearfix">
+								<button type="submit" class="x-button-primary x-border-none pull-right x-margin-top-25 button special">发表评论</button>
+							</div>
+						</div>
+					</form>
+				</#if>
+				<!-- -->
+				<@jp.commentPage pageSize="10">
+				<#if page ??>
+					<div class="x-white-box" id="clist">
+						<h3 class="x-box-title">
+							全部评论：<span>${page.totalRow!}条</span>
+						</h3>
+
+						<#list page.getList() as comment>
+							<div class="x-layout-100 clearfix x-part-border-bottom x-padding-bottom-10 x-padding-top-10">
+<!--								<div class="x-pull-left x-layout-10 x-box-border">
+									<a href="#">
+										<img class="x-image-radus x-item-space-4 x-sm-image" src="${CPATH}${comment.avatar!TPATH+'/assets/images/avatar.jpg'}"/>
+									</a>
+								</div>-->
+								<div class="x-pull-left x-padding-left-2 x-layout-90 x-box-border comment">
+									<p class="x-margin-bottom-5 x-padding-top-2 x-box-border">${comment.author!comment.nickname!comment.username!}
+										<span class="x-font-grey">${(comment.created?string("yyyy-MM-dd"))!}</span>
+									</p>
+
+									<#if comment.qc_content ??>
+										<div class="jblog-comment-replay">
+											<h4>引用来之于${comment.qc_author!}的内容</h4>
+											${comment.qc_content!}
+										</div>
+									</#if>
+
+									<p>${comment.text!}</p>
+								</div>
+								<div class="x-layout-100 clearfix">
+									<p class="x-pull-right"><a href="#comment" onclick="reply('${comment.id!}')">回复</a></p>
+								</div>
+							</div>
+						</#list>
+					</div>
+
+					<#if (page.totalRow > 10 )>
+						<ul class="x-page">
+							<@pagination anchor="clist">
+							<#list pages as pi>
+								<li class="${pi.style!}">
+									<a href="${pi.url!}">${pi.text!}</a>
+								</li>
+							</#list>
+						</@pagination>
+						</ul>
+					</#if>
+
+				</#if>
+			</@jp.commentPage>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="${TPATH}/assets/js/jquery.min.js"></script>
+			<script src="${TPATH}/assets/js/jquery.poptrox.min.js"></script>
+			<script src="${TPATH}/assets/js/skel.min.js"></script>
+			<script src="${TPATH}/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="${TPATH}/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="${TPATH}/assets/js/main.js"></script>
+
+	</body>
+</html>

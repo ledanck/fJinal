@@ -1,0 +1,907 @@
+<#include "_sidebar.html"/>
+<@sidebar>
+<div class="view-product">
+				<div class="manage account-manage">
+					<div class="manage-head">
+						<h6 class="layout padding-left manage-head-con">账号管理</h6>
+					</div>
+					<dl class="account-basic clearfix">
+						<dt class="fl">
+						<p class="account-head">
+							<img src="${CTPATH}/aliyun/Images/noavatar_middle.gif">
+						</p>
+						</dt>
+						<dd class="fl margin-large-left margin-small-top">
+						<p class="text-small">
+							<span class="show fl base-name">会员账号</span>:<span class="margin-left">${user.username}</span>
+						</p>
+						<p class="text-small">
+							<span class="show fl base-name">会员状态</span>:
+                            <#if user.activated??>
+                                <span class="margin-left">未激活</span>
+                            <#else>
+                                    <span class="margin-left">已激活</span>
+                            </#if>
+							<!-- <a class="margin-left text-main text-underline" href="#">立即认证</a> -->
+						</p>
+						<p class="text-small">
+							<span class="show fl base-name">注册时间</span>:<span class="margin-left">${user.created}</span>
+						</p>
+						</dd>
+					</dl>
+					<div class="account-basic clearfix">
+						<span class="fl show text-small">您当前的账号安全程度</span>
+						<div class="progress-bar fl margin-large-left margin-large-35">
+							<div style="background: rgb(255, 153, 0) none repeat scroll 0% 0%; width: 180px;" data-width="100">
+							</div>
+						</div>
+						<span class="fl show text-small">安全级别: <span style="color: rgb(255, 153, 0);" class="leval-safe">高</span></span>
+					</div>
+					<ul class="accound-bund">
+						<li class="clearfix">
+						<span class="bund-class">登录密码</span>
+						<span class="w45">安全性高的密码可以使账号更安全，建议您定期更换密码，设置一个包含字母，符号或数字中至少两项且长度超过6位的密码。</span>
+						<span class="fr margin-large-right">
+						<i class="icon icon-been-set fl"></i>
+						<em class="margin-right text-green-deep">已设置</em>
+						            		|
+						<a href="#" data-panel="modify_pass" data-title="修改密码-修改密码" data-callback="$(&quot;#modify_pass&quot;).submit();" data-btn="下一步,取消" class="button-word1 margin-left btn_ajax_open">修改</a>
+						<input data-panel="modify_pass2" data-title="修改密码-修改完成" data-btn="完成" data-callback="layer.closeAll();" class="modify_pass_setup2 btn_ajax_open" value="第三步" type="hidden">
+						</span>
+						</li>
+
+						<li class="clearfix">
+						<span class="bund-class">邮箱绑定</span>
+						<span class="w45">绑定邮箱可以用于安全验证、找回密码等重要操作</span>
+						<span class="fr margin-large-right">
+						<i class="icon icon-been-set fl"></i>
+						<em class="margin-right text-green-deep">已设置</em>
+						            					            		|
+						<a href="#" data-panel="modify-email-revise" data-title="修改绑定邮箱-邮箱验证" data-btn="发送验证到邮箱,取消" data-callback="$(&quot;#modify_email&quot;).submit();" class="button-word1 margin-left btn_ajax_open">修改</a>
+						<input data-panel="modify-email-revise2" data-title="修改绑定邮箱-修改成功" data-btn="完成" data-callback="layer.closeAll();" class="modif_email_setup2 btn_ajax_open" type="hidden">
+						</span>
+						</li>
+						<li class="clearfix">
+						<span class="bund-class">手机绑定</span>
+						<span class="w45">您已绑定了手机<em class="text-green-deep">155****44</em>，[您的手机为安全手机，可以找回密码，但不能用于登录；为保障您账户安全，如果换绑的手机，5天之内只能操作一次。]</span>
+						<span class="fr margin-large-right">
+						<i class="icon icon-been-set fl"></i>
+						<em class="margin-right text-green-deep">已设置</em>
+						            		|
+						<a href="#" data-panel='modify_mobile' data-title='修改绑定手机-验证身份' data-btn='下一步,取消' data-callback='$("#modify_mobile_sendsms").submit();' class="button-word1 margin-left btn_ajax_open">修改</a>
+						<input type="hidden" data-panel='modify_mobile2' data-title='修改绑定手机-验证手机' data-btn='下一步,取消' data-callback='$("#modify_new_mobile_set").submit();' class="modify_reset_mobile2 btn_ajax_open">
+						<input type="hidden" data-panel='modify_mobile3' data-title='修改绑定手机-修改成功' data-btn='完成' data-callback='layer.closeAll();' class="mobile-revise3-over btn_ajax_open" value="第三步">
+						</span>
+						</li>
+						<li class="clearfix">
+						<span class="bund-class">QQ绑定</span>
+						<span class="w45">短信账户查询,办公沟通高效轻松,企业实时通讯录，内部联络方便快捷。</span>
+						<span class="fr margin-large-right">
+						<i class="icon icon-unset fl"></i>
+						<em class="margin-right text-yellow-deep">未设置</em>
+											|
+						<a href="#" class="button-word1 margin-left">设置</a>
+						 <em class="margin-right text-green-deep">已设置</em>|<a href="#" data-panel='modify-QQ-revise' data-title='修改绑定QQ-身份验证' data-btn='下一步,取消' data-callback='layer.closeAll();$(".QQ-revise2").trigger("click")' class="button-word1 margin-left btn_ajax_open">修改</a>
+						<input type="hidden" data-panel='modify-QQ-revise2' data-title='修改绑定QQ-输入QQ' data-btn='发送验证到QQ邮箱' data-callback='layer.closeAll();$(".QQ-revise3").trigger("click")' class="QQ-revise2 btn_ajax_open">
+						<input type="hidden" data-panel='modify-QQ-revise3' data-title='修改绑定QQ-修改成功' data-btn='完成' data-callback='layer.closeAll();' class="QQ-revise3 btn_ajax_open" value="第三步">
+						</span>
+						</li>
+						<li class="clearfix">
+						<span class="bund-class">微信绑定</span>
+						<span class="w45">微信移动客户端和PC端后台互相结合，只需要关注企业号即可进行操作，突破时间和空间的限制。</span>
+						<span class="fr margin-large-right">
+						<i class="icon icon-unset fl"></i>
+						<em class="margin-right text-yellow-deep">未设置</em>
+						            		|
+						<a href="#" class="button-word1 margin-left">设置</a>
+						</span>
+						</li>
+					</ul>
+				</div>
+				<!--弹窗-->
+				<!--修改密码-->
+                <div class="modify_pass layer-box border-bottom border-gray-white">
+        <p class="safe-tips text-small padding-big-left">安全提醒：请妥善保管密码！海盗云商工作人员不会以任何理由向您索取密码。</p>
+        <form name="modify_pass" id='modify_pass' action="http://www.haidao.la/?m=console&c=account&a=profile"  method='post'>
+            <div class="padding-big-lr border-top">
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">当前密码：</span>
+                    <input class="input w40 radius fl" name="oldpassword" datatype="*6-15" errormsg='请填写6-15位的密码' nullmsg="请输入您的当前密码" type="password" />
+                    <span class="fl w30 margin-left">请输入当前账户密码</span>
+                </div>
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">设置新密码：</span>
+                    <input class="input w40 radius fl" name="newpassword" datatype="*6-15" errormsg='请填写6-15位新密码' nullmsg="请输入您想设置的新密码" type="password" />
+                    <div class="fl w40 margin-left">
+                        <span class="fl margin-right">密码等级</span>
+                        <div class="degree margin-little-top fl">
+                            <span class="level weak"></span>
+                            <span class="level medium"></span>
+                            <span class="level strong"></span>
+                            <span class="margin-small-left text text-inline">弱</span>
+                        </div>
+                        <span class=" text fl"></span>
+                    </div>
+                </div>
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">确认新密码：</span>
+                    <input class="input w40 radius fl" name="retype_newpassword" datatype="*"  nullmsg="请再次输入您想设置的新密码" recheck="newpassword" type="password" />
+                    <span class="fl w30 margin-left">请再次输入新密码</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+				<!--<div class="modify_pass" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step4">
+						<span class="w50 active">
+						<em class="icon-index">1</em>
+						<em>修改密码</em>
+						</span>
+						<span class="w50">
+						<em class="icon-index">2</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<form name="modify_pass" id="modify_pass" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=profile">
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">旧密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="old" datatype="*" placeholder="请输入您的账号旧密码" type="password">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">新密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="password" datatype="*6-15" placeholder="请输入您的账号新密码" type="password">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">确认新密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="confirmpwd" datatype="*" recheck="password" placeholder="请再次输入您的账号密码" type="password">
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify_pass2" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step5">
+						<span class="w50">
+						<em class="icon-index">1</em>
+						<em>修改密码</em>
+						</span>
+						<span class="w50 active">
+						<em class="icon-index">2</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<dd>
+						<span class="success clearfix"><em>恭喜您，密码已成功修改</em></span>
+						</dd>
+					</dl>
+				</div>-->
+				<!--支付密码设置-->
+				<div class="modify-payment-set" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step1">
+						<span class="active w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入密码</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<form name="modify_paypass_set_sendsms" method="post" id="modify_paypass_set_sendsms" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=modify_paypass&amp;action=repaypass">
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">您已绑定的手机号：</span>
+								<span class="revise-right">
+													155****44									
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">验证码：</span>
+								<span class="revise-right">
+								<input class="input fl identify-code" datatype="*4|n" sucmsg="验证码不正确" disabled="disabled" name="vcode" type="text">
+								<a class="fl margin-left revise-bottom send-code" data-url="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=send_sms&amp;action=repaypass">发送验证码</a>
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify-payment-set2" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step2">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">2</em>
+						<em>输入密码</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<form name="modify_paypass_set_ediopassword" id="modify_paypass_set_ediopassword" method="post" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=modify_paypass&amp;action=setpaypass">
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">输入密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="paypassword" datatype="*6-15" placeholder="请输入您的支付密码" type="password">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">确认密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="paypassword1" datatype="*" recheck="paypassword" placeholder="请再次输入您的支付密码" type="password">
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify-payment-set3" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step3">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入密码</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<dd>
+						<span class="success clearfix"><em>恭喜您，密码已设置成功，请牢记此密码</em></span>
+						</dd>
+					</dl>
+				</div>
+				<!--支付密码修改-->
+				<div class="modify-payment-revise" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step1">
+						<span class="active w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入密码</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<form name="modify-payment-revise_sendsms" id="modify-payment-revise_sendsms" method="post" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=modify_paypass&amp;action=repaypass">
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">您已绑定的手机号：</span>
+								<span class="revise-right">
+													155****44									
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">验证码：</span>
+								<span class="revise-right">
+								<input class="input fl identify-code" datatype="*4|n" sucmsg="验证码不正确" disabled="disabled" name="vcode" placeholder="输入验证码" type="text">
+								<a class="fl margin-left revise-bottom send-code" data-url="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=send_sms&amp;action=repaypass">发送验证码</a>
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify-payment-revise2" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step2">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">2</em>
+						<em>输入密码</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<form name="modify-payment-revise_set" id="modify-payment-revise_set" method="post" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=modify_paypass&amp;action=setpaypass">
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">输入新密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="repassword" datatype="*6-15" placeholder="请输入您的支付新密码" type="password">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">确认密码：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" name="repassword1" datatype="*" recheck="repassword" placeholder="请再次输入您的支付新密码" type="password">
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify-payment-revise3" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step3">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入密码</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">3</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<dd>
+						<span class="success clearfix"><em>恭喜您，密码已修改成功，请牢记此密码</em></span>
+						</dd>
+					</dl>
+				</div>
+				<!--邮箱绑定修改-->
+    <!--修改邮箱-->
+    <div class="modify-email-revise layer-box border-bottom border-gray-white">
+        <p class="safe-tips text-small padding-big-left">温馨提醒：验证邮件受网络影响可能有一定延迟，30分钟未收到请重试。</p>
+        <form id='modify_email' name='modify_email' method="post" action="http://www.haidao.la/?m=console&c=account&a=send_email">
+            <div class="padding-big-lr border-top">
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">设置新邮箱 ：</span>
+                    <input class="input w40 radius fl" name='email' type="text" datatype="email" errormsg='请填写正确的邮箱地址' nullmsg="请输入您需要绑定的邮箱" value=""/>
+                    <span class="fl w30 margin-left">请输入新的邮箱账户</span>
+                </div>
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">登录密码：</span>
+                    <input class="input w40 radius fl" type="password" name='password' datatype="*6-15" errormsg='请填写6-15位密码' value='' nullmsg="请输入您当前的登陆密码"/>
+                    <span class="fl w30 margin-left">请输入账户登录密码</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--发送邮箱成功-->
+    <div class="modify-email-revise2 layer-box border-bottom border-gray-white">
+        <div class="clearfix success text-center">
+            <i class="icon1 icon-sms"></i>
+            <div class="success-tip text-inline text-left">
+                <h2>发送成功！</h2>
+                <p class="text-default">邮件已发送到指定邮箱，请在30分钟内完成验证！</p>
+            </div>
+        </div>
+    </div>
+
+    <!--				<div class="modify-email-revise" style="display: none;">
+                        <dl class="layout modify-identity">
+                            <dt class="step4">
+                            <span class="w50 active">
+                            <em class="icon-index">1</em>
+                            <em>输入邮箱</em>
+                            </span>
+                            <span class="w50">
+                            <em class="icon-index">2</em>
+                            <em>设置成功</em>
+                            </span>
+                            </dt>
+                            <form name="modify_email" id="modify_email" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=reEmailSendEmail" method="post">
+                                <dd>
+                                <ul>
+                                    <li class="clearfix">
+                                    <span class="revise-left">输入新邮箱地址：</span>
+                                    <span class="revise-right">
+                                    <input class="input input-pass fl" datatype="email" placeholder="请输入您的新邮箱地址" name="email">
+                                    </span>
+                                    </li>
+                                </ul>
+                                </dd>
+                            </form>
+                        </dl>
+                    </div>
+                    <div class="modify-email-revise2" style="display: none;">
+                        <dl class="layout modify-identity">
+                            <dt class="step5">
+                            <span class="w50">
+                            <em class="icon-index">1</em>
+                            <em>输入邮箱</em>
+                            </span>
+                            <span class="w50 active">
+                            <em class="icon-index">2</em>
+                            <em>设置成功</em>
+                            </span>
+                            </dt>
+                            <dd>
+                            <span class="success clearfix"><em>邮件已发送到指定邮箱,请30分钟内完成验证!</em></span>
+                            </dd>
+                        </dl>
+                    </div>-->
+
+				<!--绑定手机号-->
+				<div class="modify_mobile_set" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step1">
+						<span class="w50 active">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w50">
+						<em class="icon-index">2</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<form name="modify_mobile_checked" id="modify_mobile_checked" action="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=modify_mobile&amp;action=setmobile" method="post">
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">您需要绑定的手机号：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" datatype="mobile" errormsg="请输入正确的手机号码" name="new_mobile" placeholder="请输入您的手机号码">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">验证码：</span>
+								<span class="revise-right">
+								<input class="input fl identify-code" datatype="*4|n" sucmsg="验证码不正确" disabled="disabled" name="vcode" placeholder="输入验证码" type="text">
+								<a class="fl margin-left revise-bottom send-code" data-url="http://www.haidao.la/index.php?m=Console&amp;c=Account&amp;a=send_sms&amp;action=setmobile">发送验证码</a>
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify_mobile_set2" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step2">
+						<span class="w50">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w50 active">
+						<em class="icon-index">2</em>
+						<em>修改成功</em>
+						</span>
+						</dt>
+						<dd>
+						<span class="success clearfix"><em>恭喜您，绑定手机成功</em></span>
+						</dd>
+					</dl>
+				</div>
+				<!--修改手机号-->
+    <div class="modify_mobile layer-box border-bottom border-gray-white">
+        <p class="safe-tips text-small padding-big-left">安全提醒：请妥善保管手机验证码！海盗云商工作人员不会以任何理由向您索取验证码。</p>
+        <form name ='modify_mobile' id='modify_mobile' action="http://www.haidao.la/?m=console&c=account&a=modify_mobile" method='post'>
+            <div class="padding-big-lr border-top">
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">新的手机号：</span>
+                    <input class="input w40 radius fl" type="text" name="mobile" datatype="mobile" errormsg='请填写正确的手机号码' nullmsg="请输入您需要设置的新手机号" />
+                    <span class="fl w30 margin-left">请输入新的手机号码</span>
+                </div>
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">手机验证码：</span>
+                    <div class="vcode-box radius w40 fl">
+                        <input name="vcode"  class="padding-left w60" datatype="*" nullmsg="请输入您手机收到的验证码" type="text" />
+                        <a href="javascript:;" id="send_mobile" class="send-code text-center border-left">获取验证码</a>
+                    </div>
+                    <span class="fl w30 margin-left">获取验证码并输入</span>
+                </div>
+                <div class="text-lh-34 clearfix margin-big-top">
+                    <span class="fl w15 text-right">登录密码：</span>
+                    <input class="input w40 radius fl" type="password" name='password' nullmsg="请输入您当前的登陆密码" datatype="*6-15" errormsg='请填写6-15位密码' />
+                    <span class="fl w30 margin-left">请输入账户登录密码</span>
+                </div>
+            </div>
+        </form>
+    </div>
+				<!--绑定QQ-->
+				<div class="modify-QQ-band" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step1">
+						<span class="active w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入QQ</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<form>
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">输入您已绑定的手机号：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" datatype="mobile" errormsg="请输入正确的手机号码" placeholder="请输入您的手机号码">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">验证码：</span>
+								<span class="revise-right">
+								<input class="input fl identify-code" datatype="*4|n" sucmsg="验证码不正确" disabled="disabled" placeholder="输入验证码" type="text">
+								<a class="fl margin-left revise-bottom send-code">发送验证码</a>
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify-QQ-band2" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step2">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">2</em>
+						<em>输入QQ</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<dd>
+						<ul>
+							<li class="clearfix">
+							<span class="revise-left">输入您的QQ号：</span>
+							<span class="revise-right">
+							<form>
+								<input class="input input-pass fl" datatype="n5-10" errormsg="请输入正确QQ号" placeholder="请输入您的QQ号">
+							</form>
+							</span>
+							</li>
+						</ul>
+						</dd>
+					</dl>
+				</div>
+				<div class="modify-QQ-band3" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step3">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入QQ</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<dd>
+						<span class="success clearfix"><em>恭喜您，QQ已成功绑定</em></span>
+						</dd>
+					</dl>
+				</div>
+				<!--修改绑定QQ-->
+				<div class="modify-QQ-revise" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step1">
+						<span class="active w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入QQ</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<form>
+							<dd>
+							<ul>
+								<li class="clearfix">
+								<span class="revise-left">输入您已绑定的手机号：</span>
+								<span class="revise-right">
+								<input class="input input-pass fl" datatype="mobile" errormsg="请输入正确的手机号码" placeholder="请输入您的手机号码">
+								</span>
+								</li>
+								<li class="clearfix">
+								<span class="revise-left">验证码：</span>
+								<span class="revise-right">
+								<input class="input fl identify-code" datatype="*4|n" sucmsg="验证码不正确" disabled="disabled" placeholder="输入验证码" type="text">
+								<a class="fl margin-left revise-bottom send-code">发送验证码</a>
+								</span>
+								</li>
+							</ul>
+							</dd>
+						</form>
+					</dl>
+				</div>
+				<div class="modify-QQ-revise2" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step2">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">2</em>
+						<em>输入QQ</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<dd>
+						<ul>
+							<li class="clearfix">
+							<span class="revise-left">输入您新的QQ号：</span>
+							<span class="revise-right">
+							<form>
+								<input class="input input-pass fl" datatype="n5-10" errormsg="请输入正确QQ号" placeholder="请输入您的QQ号">
+							</form>
+							</span>
+							</li>
+						</ul>
+						</dd>
+					</dl>
+				</div>
+				<div class="modify-QQ-revise3" style="display: none;">
+					<dl class="layout modify-identity">
+						<dt class="step3">
+						<span class="w33">
+						<em class="icon-index">1</em>
+						<em>短信验证</em>
+						</span>
+						<span class="w33">
+						<em class="icon-index">2</em>
+						<em>输入QQ</em>
+						</span>
+						<span class="active w33">
+						<em class="icon-index">3</em>
+						<em>设置成功</em>
+						</span>
+						</dt>
+						<dd>
+						<span class="success clearfix"><em>恭喜您，绑定QQ已成功修改</em></span>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+
+<script type="text/javascript" src="${CTPATH}/aliyun/Js/ZeroClipboard.min.js"></script>
+<script type="text/javascript" src="${CTPATH}/aliyun/Js/select.js"></script>
+<script type="text/javascript" src="${CTPATH}/aliyun/Js/jquery.cookie.js"></script>
+<script type="text/javascript">
+	$(function(){
+		progress();
+		$("div[class^='modify']").hide();
+		//复制
+		var clip = new ZeroClipboard($('#copy_button'));
+		clip.on('ready', function(){
+			this.on('aftercopy', function(event){
+				layer.msg('已经复制内容：' + event.data['text/plain']);
+			});
+		});
+
+		clip.on('error', function(event){
+			console.log(1);
+			layer.msg("内容复制不成功！");
+			ZeroClipboard.destroy();
+		});
+
+		$(".btn_ajax_open").click(function(){
+			var panel=$(this).attr('data-panel');
+			$('.'+panel).find('.modify-identity').removeClass('hidden').siblings('.modify-identity').addClass('hidden');
+		});
+
+
+		//修改密码
+		$("form[name='modify_pass']").Validform({
+			ajaxPost:true,
+			tiptype:function(msg){
+				if(msg)layer.msg(''+msg+'');
+			},
+			callback:function(data){
+				if(data.status === 1){
+					layer.msg(data.info);
+					location=location;
+				} else {
+					layer.msg(data.info);
+					return false;
+				}
+			}
+		});
+
+		//修改绑定手机_发送短信
+		$("form[name='modify_mobile']").Validform({
+			ajaxPost:true,
+			tiptype:function(msg){
+				if(msg)layer.msg(''+msg+'');
+			},
+			callback:function(data){
+				layer.msg(''+data.info+'');
+				if(data.status == 1){
+					window.location.reload(true);
+				}
+			},
+			ajaxurl:{
+				success:function(data,obj){
+					layer.msg(''+data.info+'');
+				}
+			}
+		});
+
+		//修改邮箱_发送邮件
+		$("form[name='modify_email']").Validform({
+			ajaxPost:true,
+			tiptype:function(msg){
+				if(msg)layer.msg(''+msg+'');
+			},
+			callback:function(data){
+				layer.msg(''+data.info+'');
+				if(data.status == 1){
+					layer.closeAll();$(".email-success-btn").trigger("click");
+				}
+			},
+			ajaxurl:{
+				success:function(data,obj){
+					layer.msg(''+data.info+'');
+				}
+			}
+		});
+
+		/*仿刷新：检测是否存在cookie*/
+		if($.cookie("reg_mobile")){
+			code_mobile($.cookie("reg_mobile"));
+		}
+		//手机验证
+		$("#send_mobile").live('click',function(){
+			var filter_mobile = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/;
+			if($(this).data("status")=="false"){
+				return false;
+			}
+			$(this).data("status","false");
+			var parent=$(this).closest('.layer-box');
+			var $val = parent.find('input').eq(0).val();
+			if($val==""){
+				$(this).data("status","true");
+				return false;
+			}else if(!filter_mobile.test($val)){
+				$(this).data("status","true");
+				return false;
+			}else{
+				layer.msg('验证码发送中');
+				var $btn=$(this);
+				$.ajax({
+					type: "post",
+					url: "http://www.haidao.la/?m=api&c=verify&a=vcode",
+					data: {
+						mobile:$val,
+						action:'mobile'
+					},
+					dataType: "json",
+					success: function(data){
+						layer.msg(data.info);
+						if(data.status === 1) {
+							code_mobile(60);
+						} else {
+							$btn.data("status","true");
+							return false;
+						}
+					}
+				});
+			}
+		});
+		//手机验证发送验证码
+		function code_mobile(count){
+			var count=60;
+			var interval=setInterval(function(){
+				if(count>1){
+					count--;
+					$("#send_mobile").text(count+"s后重试");
+					$.cookie("reg_mobile", count, {path: '/', expires: (1/86400)*count});
+				}else{
+					clearInterval(interval);
+					$("#send_mobile").data("status","true");
+					$("#send_mobile").text("重获验证码");
+				}
+			},1000);
+		}
+
+	});
+</script>
+<script>
+	$(function(){
+		var characters = 0;
+		var capitalletters = 0;
+		var loweletters = 0;
+		var number = 0;
+		var special = 0;
+		var upperCase= new RegExp('[A-Z]');
+		var lowerCase= new RegExp('[a-z]');
+		var numbers = new RegExp('[0-9]');
+		var specialchars = new RegExp('([!,%,&,@,#,$,^,*,?,_,~])');
+		$("input[name='newpassword']").keyup(function(e) {
+			var thisval=$(this).val();
+			var thisid=$(".degree");
+			check_strength(thisval,thisid);
+		});
+		function check_strength(thisval,thisid){
+			if (thisval.length > 8) { characters = 1; } else { characters = 0; };
+			if (thisval.match(upperCase)) { capitalletters = 1} else { capitalletters = 0; };
+			if (thisval.match(lowerCase)) { loweletters = 1}  else { loweletters = 0; };
+			if (thisval.match(numbers)) { number = 1}  else { number = 0; };
+
+			var total = characters + capitalletters + loweletters + number + special;
+			var totalpercent = GetPercentage(7, total).toFixed(0);
+			get_total(total,thisid);
+		}
+		function GetPercentage(a, b) {
+			return ((b / a) * 100);
+		}
+		function get_total(total,thisid){
+			if(total == 0){
+				thisid.removeClass();
+				thisid.addClass('degree margin-little-top fl');
+				thisid.find(".text").html('');
+			} else if (total <= 2){
+				thisid.removeClass();
+				thisid.addClass('degree margin-little-top fl weak');
+				thisid.find(".text").html('弱');
+			} else if(total == 3){
+				thisid.removeClass();
+				thisid.addClass('degree margin-little-top fl medium');
+				thisid.find(".text").html('中');
+
+			} else {
+				thisid.removeClass();
+				thisid.addClass('degree margin-little-top fl high');
+				thisid.find(".text").html('强');
+			}
+		}
+	});
+</script>
+
+</@sidebar>
