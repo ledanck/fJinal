@@ -16,14 +16,21 @@
 package io.jpress.front.controller;
 
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
+import com.jfinal.aop.Before;
 import com.jfinal.render.Render;
 
 import io.jpress.Consts;
 import io.jpress.core.BaseFrontController;
 import io.jpress.core.addon.HookInvoker;
 import io.jpress.core.cache.ActionCache;
+import io.jpress.interceptor.UCodeInterceptor;
 import io.jpress.model.Content;
 import io.jpress.model.Taxonomy;
 import io.jpress.model.query.ContentQuery;
@@ -188,4 +195,54 @@ public class ContentController extends BaseFrontController {
 		HookInvoker.contentRenderAfter(this);
 	}
 
+
+	/**
+	 *  获取所有比赛信息
+	 */
+	public void getAllCompetition(){
+		List<Content> contentList=  ContentQuery.me().findByModule("page");
+		if(contentList != null){
+			renderJson(contentList);
+		}
+		else {
+			renderJson(new ArrayList<>());
+		}
+	}
+
+	/***
+	 *  根据比赛科目，比赛时间搜索比赛信息。
+	 *   POST消息，title 表示比赛名称， starttime/endtime表示时间
+	 */
+	public void searchCompetition() {
+		String title = getPara("title");    //比赛科目
+		String endtime = getPara("endtime");       //比赛消息名称
+		String starttime = getPara("starttime");       //比赛开始时间
+
+		if(starttime!=null && endtime!=null){
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				Date sdate = simpleDateFormat.parse(starttime);
+				Date edata = simpleDateFormat.parse(endtime);
+				List<Content> contentList = ContentQuery.me().searchPageByTitleAndTime(title, sdate, edata);
+                contentList.add(new Content());
+				if(contentList!=null){
+                    renderJson(JSON.toJSONString(contentList));
+                    return;
+				}
+				else {
+					renderJson(new ArrayList<>());
+                    return;
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		List<Content> contentList = ContentQuery.me().searchPageByTitleAndTime(title, null, null);
+		if(contentList!=null){
+			renderJson(contentList);
+		}
+		else {
+			renderJson(new ArrayList<>());
+		}
+	}
 }

@@ -16,7 +16,9 @@
 package io.jpress.model.query;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -415,6 +417,23 @@ public class ContentQuery extends JBaseQuery {
 	public List<Content> searchByModuleAndTitle(String module, String title, int limit) {
 		return DAO.doFind("module = ? and title like ? order by id desc limit ?", module, "%" + title + "%", limit);
 	}
+
+	public List<Content> searchPageByTitleAndTime(String title, Date startTime, Date endTime){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if(title==null && startTime==null && endTime==null){
+            return new ArrayList<>();
+        }
+        if(startTime==null || endTime==null){
+            return DAO.doFind("module = ? and title like ?", "page", "%" + title + "%");
+        }
+        if(title==null){
+            return DAO.doFind("module = ? and comment_time>=? and comment_time<= ?", "page", simpleDateFormat.format(startTime), simpleDateFormat.format(endTime));
+        }
+        return DAO.doFind("module = ? and title like ? and comment_time>=? and comment_time<= ?", "page", "%" + title + "%", simpleDateFormat.format(startTime), simpleDateFormat.format(endTime));
+	}
+
+
+
 
 	public List<Content> findByModule(final String module, final BigInteger parentId, String orderby) {
 		final StringBuilder sqlBuilder = new StringBuilder("select * from content c");

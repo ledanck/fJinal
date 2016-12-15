@@ -17,6 +17,8 @@ package io.jpress.admin.controller;
 
 import java.math.BigInteger;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -363,15 +365,27 @@ public class _ContentController extends JBaseCRUDController<Content> {
 
 		String slug = StringUtils.isBlank(content.getSlug()) ? content.getTitle() : content.getSlug();
 		content.setSlug(slug);
-
-		String username = getPara("username");
-		if (StringUtils.isNotBlank(username)) {
-			User user = UserQuery.me().findUserByUsername(username);
-			if (user == null) {
-				renderAjaxResultForError("系统没有该用户：" + username);
-				return;
+		if(content.getModule().equalsIgnoreCase("page")){
+			String dateStr = getPara("username");
+            content.setCommentStatus("close");
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				Date date = simpleDateFormat.parse(dateStr);
+				content.setCommentTime(date);
+			} catch (ParseException e) {
+				renderAjaxResultForError("考试时间格式错误：" + dateStr + ". [例：2016-01-01 12:00:00]");
 			}
-			content.setUserId(user.getId());
+		}
+		else {
+			String username = getPara("username");
+			if (StringUtils.isNotBlank(username)) {
+				User user = UserQuery.me().findUserByUsername(username);
+				if (user == null) {
+					renderAjaxResultForError("系统没有该用户：" + username);
+					return;
+				}
+				content.setUserId(user.getId());
+			}
 		}
 
 		Content dbContent = ContentQuery.me().findBySlug(content.getSlug());
