@@ -257,6 +257,7 @@ public class _ContentController extends JBaseCRUDController<Content> {
 
 		TplModule module = TemplateManager.me().currentTemplateModule(moduleName);
 		setAttr("module", module);
+        setAttr("moduleName", moduleName);
 
 		String _editor = getCookie("_editor", "tinymce");
 		setAttr("_editor", _editor);

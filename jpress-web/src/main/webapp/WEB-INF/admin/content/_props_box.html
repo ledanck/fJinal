@@ -39,13 +39,25 @@
 			<div class="tab-content">
 				<div class="tab-pane active form-horizontal" id="tab_1">
                 <div class="form-group">
-                  <label for="_flag" class="col-sm-1 control-label">标识</label>
+                  <label for="_flag" class="col-sm-1 control-label">
+					<#if (moduleName)?? && "page"==moduleName>
+						比赛科目
+						<#else>
+							标识
+					</#if>
+				  </label>
                   <div class="col-sm-11">
                     <input type="text" class="form-control" name="content.flag" id="_flag"  value="${(content.flag)!}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="_uname" class="col-sm-1 control-label">作者</label>
+                  <label for="_uname" class="col-sm-1 control-label">
+					  <#if (moduleName)?? && "page"==moduleName>
+						  比赛时间
+						  <#else>
+							  作者
+					  </#if>
+				  </label>
                   <div class="col-sm-11">
                     <input type="text" class="form-control" id="_uname" name="username" value="${(content.username)!}">
                   </div>
